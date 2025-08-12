@@ -1,0 +1,38 @@
+
+
+
+/* Make autofilled inputs have white background */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Keep floating labels visible with autofilled inputs */
+.p-float-label input:-webkit-autofill+label {
+    top: -0.75rem !important;
+    font-size: 0.75rem !important;
+    background: white;
+    padding: 0 4px;
+}
+
+/* Ensure password field autofill works with PrimeReact Password component */
+.p-password input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+/* Keep input text visible when autofilled */
+.form-control:-webkit-autofill {
+    -webkit-text-fill-color: #495057 !important;
+}
+
+/* Ensure floating label remains visible for Password component */
+.p-float-label .p-password-input:-webkit-autofill~label {
+    top: -0.75rem !important;
+    font-size: 0.75rem !important;
+    background: white;
+    padding: 0 4px;
+}

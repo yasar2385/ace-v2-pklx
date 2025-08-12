@@ -1,0 +1,110 @@
+.login {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+    font-family: 'Comfortaa', cursive;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    border-radius: 10px;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+}
+
+.form input {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.form input:focus {
+    background: #dbdbdb;
+}
+
+.form button {
+    font-family: 'Comfortaa', cursive;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4b6cb7;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.form button:active {
+    background: #395591;
+}
+
+.form span {
+    font-size: 40px;
+    color: #4b6cb7;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.form p.error {
+    margin: 0 0 10px 10px;
+    text-align: left;
+    font-size: 10px;
+    color: red;
+}
+
+/* radioSwitch.css */
+.radio-switch-wrapper {
+    min-height: 58px;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #fff;
+}
+
+.radio-switch-wrapper:focus-within {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.radio-switch .btn-outline-primary {
+    border: none;
+    border-radius: 0.25rem;
+    margin: 4px;
+    padding: 0.375rem 0.75rem;
+    color: #6c757d;
+    background-color: transparent;
+    transition: all 0.15s ease-in-out;
+}
+
+.radio-switch .btn-check:checked+.btn-outline-primary {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.radio-switch .btn-outline-primary:hover:not(.active) {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.btn-check:focus+.btn-outline-primary,
+.btn-outline-primary:focus {
+    box-shadow: none;
+}
+
+.radio-switch .btn-group-item:not(:last-child) .btn {
+    border-right: 1px solid #dee2e6;
+}

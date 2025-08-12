@@ -1,0 +1,51 @@
+{
+    "name": "ace-pickle-web-ui",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "postbuild": "ts-node scripts/createBuildZip.js"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.3.0",
+        "analogue-time-picker": "^1.0.2",
+        "axios": "^1.7.7",
+        "bootstrap": "^5.3.3",
+        "formik": "^2.4.6",
+        "lucide-react": "^0.469.0",
+        "moment": "^2.30.1",
+        "primereact": "^10.8.5",
+        "react": "^18.3.1",
+        "react-bootstrap": "^2.10.7",
+        "react-datepicker": "^7.6.0",
+        "react-dom": "^18.3.1",
+        "react-icons": "^5.4.0",
+        "react-redux": "^9.1.2",
+        "react-router-dom": "^6.27.0",
+        "react-select": "^5.9.0",
+        "styled-components": "^6.1.14",
+        "sweetalert2": "^11.14.4",
+        "yup": "^1.6.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.13.0",
+        "@types/bootstrap": "^5.2.10",
+        "@types/react": "^18.3.11",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.3",
+        "archiver": "^5.3.2",
+        "date-fns": "^4.1.0",
+        "eslint": "^9.13.0",
+        "eslint-plugin-react-hooks": "^5.0.0",
+        "eslint-plugin-react-refresh": "^0.4.13",
+        "globals": "^15.11.0",
+        "ts-node": "^10.9.2",
+        "typescript": "~5.6.2",
+        "typescript-eslint": "^8.10.0",
+        "vite": "^5.4.9"
+    }
+}
