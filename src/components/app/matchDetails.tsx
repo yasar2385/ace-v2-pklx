@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import http from '../services/http.services';
+import http from "../../services/http.services";
 
 export const MatchDetails = () => {
   const [matchDetails, setMatchDetails]: any = useState({});

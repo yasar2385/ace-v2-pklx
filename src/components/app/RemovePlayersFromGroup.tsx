@@ -4,10 +4,10 @@ import Swal from "sweetalert2";
 
 import * as bootstrap from "bootstrap";
 
-import http from "../services/http.services";
-import { RemoveIcon } from "../shared/icons";
+import http from "../../services/http.services";
+import { RemoveIcon } from "../../shared/icons";
 
-export function RemoveAdminFromGroup(props: any) {
+export function RemovePlayerFromGroup(props: any) {
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [players, setPlayers] = useState([]);
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export function RemoveAdminFromGroup(props: any) {
       "group_id" : location.state.group_id,
       "user_id" : userId
     }
-    http.post('api_remove_group_admin.php',user_group)
+    http.post('api_remove_group_player.php',user_group)
     .then((response)=>{
       if(response.data.status === 'STATUS OK'){
         console.log('Admin removed from group');
@@ -38,7 +38,7 @@ export function RemoveAdminFromGroup(props: any) {
         console.log('Error');
         Swal.fire({
           title: 'Error',
-          text: 'User not logged in',
+          text: response.data.status,
           icon: 'error',
         });
       }
@@ -49,7 +49,7 @@ export function RemoveAdminFromGroup(props: any) {
     })
   }
   const get_admin_list = () => {
-    http.post('api_get_group_admins.php',{group_id : location.state.group_id})
+    http.post('api_get_group_users.php',{group_id : location.state.group_id})
     .then((response) => {      
       setPlayers(response.data)      
     })
@@ -65,12 +65,12 @@ export function RemoveAdminFromGroup(props: any) {
 
   useEffect(() => {
     const createShootoutModal = new bootstrap.Modal(
-      document.getElementById("removeAdminModal") as HTMLElement
+      document.getElementById("removePlayerModal") as HTMLElement
     )
 
     createShootoutModal.show();
 
-    const modalElement = document.getElementById("removeAdminModal") as HTMLElement;
+    const modalElement = document.getElementById("removePlayerModal") as HTMLElement;
     const handleModalClose = () => {
       createShootoutModal.hide();
       //props.history.push('/ap/club-league/clubs');
@@ -87,9 +87,9 @@ export function RemoveAdminFromGroup(props: any) {
   return (
     <div
       className="modal fade"
-      id="removeAdminModal"
+      id="removePlayerModal"
       tabIndex={-1}
-      aria-labelledby="removeAdminModalLabel"
+      aria-labelledby="removePlayerModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -97,8 +97,8 @@ export function RemoveAdminFromGroup(props: any) {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="removeAdminModalLabel">
-              Remove Admin(s) from Group
+            <h1 className="modal-title fs-5" id="removePlayerModalLabel">
+              Remove Players(s) from Group
             </h1>
             <button
               type="button"
@@ -112,7 +112,7 @@ export function RemoveAdminFromGroup(props: any) {
                 <table className='table table-bordered'>
                   <thead className='table-ace'>
                     <tr>
-                        <th>Admin Name</th>                     
+                        <th>Players Name</th>                     
                         <th>Remove</th>
                     </tr>
                   </thead>

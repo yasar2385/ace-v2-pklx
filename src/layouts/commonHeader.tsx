@@ -16,6 +16,12 @@ export function CommonHeader() {
               alt="app_logo"
               className="d-inline-block align-text-top"
             />
+            <img
+              src="./logo-v2.jpg"
+              width={60}
+              alt="app_logo"
+              className="d-inline-block align-text-top"
+            />
           </a>
           <button
             className="navbar-toggler"

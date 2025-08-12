@@ -19,13 +19,13 @@ import {
 import * as bootstrap from "bootstrap";
 import Swal from "sweetalert2";
 
-import { AddPlayerToGroup } from "../../../components/addPlayerToGroup";
-import { AddAdminToGroup } from "../../../components/AddAdminToGroup";
-import { TeamDetailsV2 } from "../../../components/teamDetails";
+import { AddPlayerToGroup } from "../../../components/app/addPlayerToGroup";
+import { AddAdminToGroup } from "../../../components/app/AddAdminToGroup";
+import { TeamDetailsV2 } from "../../../components/app/teamDetails";
 
-import { Loading } from "../../../components/loadingComponent";
-import { RemoveAdminFromGroup } from "../../../components/RemoveAdminFromGroup";
-import { RemovePlayerFromGroup } from "../../../components/RemovePlayersFromGroup";
+import { Loading } from "../../../components/app/loadingComponent";
+import { RemoveAdminFromGroup } from "../../../components/app/RemoveAdminFromGroup";
+import { RemovePlayerFromGroup } from "../../../components/app/RemovePlayersFromGroup";
 import { API_BASE_URL } from "../../../config";
 
 export function ClubsPage() {

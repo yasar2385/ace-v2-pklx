@@ -1,7 +1,7 @@
 import { Password } from "primereact/password";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import http from "../services/http.services";
+import http from "../../services/http.services";
 
 export const ChangePasswordCanvas = () => {
   const [passwordRequest, setPasswordRequest] = useState({

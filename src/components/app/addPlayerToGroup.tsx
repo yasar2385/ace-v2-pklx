@@ -2,8 +2,7 @@ import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import http from '../services/http.services';
-
+import http from '../../services/http.services';
 
 interface Player {
   user_fname: string;
@@ -14,29 +13,30 @@ interface Player {
   [key: string]: any;
 }
 
-export function AddAdminToGroup() {
+export function AddPlayerToGroup() {
   const [players, setPlayers] = useState<Player[]>([]);
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [userGroup, setUserGroup] = useState({})
 
-  const addAdminToGroup = (e: any) => {
+  const addUserToGroup = (e: any) => {
     e.preventDefault();
     console.log(selectedPlayers);
     const user_group = {
       "group_id": location.state.group_id,
-      "group_admins": selectedPlayers.map((item: any) => { return { id: item.user_id } })
+      "group_users": { ...selectedPlayers.map((item: any) => item.user_id) }
     }
 
 
-    http.post('api_add_admins.php', user_group)
+    http.post('api_add_group_users.php', user_group)
       .then((response) => {
         if (response.data.status === 'STATUS OK') {
-          console.log('Admin added to group');
+          console.log('User added to group');
           Swal.fire({
             title: 'Success',
-            text: 'Admin\'s added to group',
+            text: 'User added to group',
             icon: 'success',
           }).then((result) => {
             if (result.isConfirmed) {
@@ -57,23 +57,18 @@ export function AddAdminToGroup() {
       .catch((error) => {
         console.error('Error:', error);
       })
-
-
   }
 
   const get_user_list = () => {
-
     http.post('api_select_userlist.php', { selection_code: 0 })
       .then((response) => {
-
-        console.log('User list');
+        setPlayers(response.data)
         console.log(response.data);
-        setPlayers(response.data);
-
       })
       .catch((error) => {
         console.error('Error:', error);
       })
+
   }
 
   const panelFooterTemplate = () => {
@@ -99,9 +94,9 @@ export function AddAdminToGroup() {
   return (
     <div
       className="modal fade"
-      id="addAdminModal"
+      id="addPlayerModal"
       tabIndex={-1}
-      aria-labelledby="addAdminLabel"
+      aria-labelledby="addPlayerLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
@@ -109,8 +104,8 @@ export function AddAdminToGroup() {
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="addAdminLabel">
-              Add Admin To Group
+            <h1 className="modal-title fs-5" id="addPlayerLabel">
+              Add Player To Group
             </h1>
             <button
               type="button"
@@ -119,11 +114,11 @@ export function AddAdminToGroup() {
               aria-label="Close"
             ></button>
           </div>
-          <form onSubmit={(e) => addAdminToGroup(e)}>
+          <form onSubmit={(e) => addUserToGroup(e)}>
             <div className="modal-body">
               <div className="mb-3">
                 <label htmlFor="playerName" className="form-label">
-                  Choose Admin(s)...
+                  Choose Player(s)
                 </label>
                 <MultiSelect
                   value={selectedPlayers}
@@ -131,7 +126,7 @@ export function AddAdminToGroup() {
                   options={players || []}
                   optionLabel="user_fname"
                   display="chip"
-                  placeholder="Select admins"
+                  placeholder="Select players"
                   maxSelectedLabels={4}
                   className="w-100"
                   filter
@@ -142,11 +137,12 @@ export function AddAdminToGroup() {
                   appendTo="self"
                 />
               </div>
+
               <div style={{ maxHeight: "280px", overflow: "auto" }}>
                 <table className='table table-bordered'>
                   <thead className='table-ace'>
                     <tr>
-                      <th>Admin Name</th>
+                      <th>Player Name</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -169,7 +165,7 @@ export function AddAdminToGroup() {
                 Close
               </button>
               <button type="submit" className="btn btn-success">
-                Add Admin(s)
+                Add Player(s)
               </button>
             </div>
           </form>

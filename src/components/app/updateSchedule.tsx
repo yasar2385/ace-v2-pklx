@@ -4,9 +4,9 @@ import { StepperPanel } from 'primereact/stepperpanel';
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
-import http from '../services/http.services';
+import http from '../../services/http.services';
 
-export const ScheduleModal = () => {
+export const UpdateScheduleModal = () => {
   const stepperRef: any = useRef(null);
   const [scheduleRequest, setScheduleRequest] = useState({
     schedule_name: '',
@@ -35,7 +35,6 @@ export const ScheduleModal = () => {
   const navigate = useNavigate();
 
   const getCourtLists = () => {
-
     http.get('/api_select_all_courts.php')
       .then((response: any) => {
         const lists: any =
@@ -48,7 +47,6 @@ export const ScheduleModal = () => {
         console.error('Error:', error);
       })
   };
-
   const stepOneValidation = () => {
     if (
       scheduleRequest.schedule_name !== '' &&
@@ -78,21 +76,54 @@ export const ScheduleModal = () => {
       return false;
     }
   }
-  const createSchedule = async (e: any) => {
+
+  const getScheduleById = (id: number) => {
+    http.post('/api_get_schedule.php', { schedule_id: id })
+      .then((response: any) => {
+        const schedule = response.data;
+        setScheduleRequest({
+          schedule_name: schedule.schedule_name,
+          schedule_description: schedule.schedule_description,
+          schedule_starttime: schedule.schedule_starttime,
+          schedule_endtime: schedule.schedule_endtime,
+          schedule_repeat: schedule.schedule_repeat,
+          schedule_repeat_day: schedule.schedule_repeat_dat,
+          schedule_repeat_till: schedule.schedule_repeat_till,
+          schedule_visibility: Number(schedule.schedule_visibility),
+          schedule_skilllevel: schedule.schedule_skilllevel,
+          schedule_rating: schedule.schedule_rating,
+          schedule_format: schedule.schedule_format,
+          schedule_cost: schedule.schedule_cost,
+          schedule_signup: schedule.schedule_signup,
+          schedule_note_player: schedule.schedule_note_player,
+          schedule_note_reviewer: schedule.schedule_note_reviewer,
+          schedule_auto_email: Number(schedule.schedule_auto_email),
+          schedule_created_on: schedule.schedule_created_on,
+          schedule_courts: schedule.schedule_courts,
+          schedule_group_id: schedule.schedule_group_id,
+        });
+      }).catch((error) => {
+        console.error('Error:', error);
+      })
+  };
+
+  const updateSchedule = (e: any) => {
+    e.preventDefault();
     const request = {
       ...scheduleRequest,
-      schedule_courts: scheduleRequest.schedule_courts.map((court: any) => { return { id: court.id, count: court.count } }),
+      schedule_courts: [],
+      schedule_id: location.state.schedule_id,
       schedule_group_id: location.state !== null ? location.state.group_id : null,
     };
 
-    e.preventDefault();
 
-    http.post('/api_create_schedule.php', request)
+    http.post('/api_edit_schedule.php', request)
       .then((response: any) => {
+
         if (response.data.status !== 'ERROR') {
           Swal.fire({
             title: 'Success',
-            text: 'Schedule created successfully',
+            text: 'Schedule updated successfully',
             icon: 'success',
           }).then((result) => {
             if (result.isConfirmed) {
@@ -109,28 +140,28 @@ export const ScheduleModal = () => {
       }).catch((error) => {
         console.error('Error:', error);
       })
-
   };
 
   useEffect(() => {
     getCourtLists();
+    getScheduleById(location.state.schedule_id);
   }, []);
 
   return (
     <div
       className="modal fade"
-      id="scheduleModal"
+      id="updateScheduleModal"
       tabIndex={-1}
-      aria-labelledby="scheduleModalLabel"
+      aria-labelledby="updateScheduleModalLabel"
       aria-hidden="true"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
     >
-      <div className="modal-dialog modal-dialog-centered modal-lg">
+      <div className="modal-dialog modal-dialog-centered modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="scheduleModalLabel">
-              Create schedule
+            <h1 className="modal-title fs-5" id="updateScheduleModalLabel">
+              Update schedule
             </h1>
             <button
               type="button"
@@ -144,7 +175,7 @@ export const ScheduleModal = () => {
               <div className="row g-1">
                 <div className="col-12">
                   <div className="p-2">
-                    <form className="row" onSubmit={(e) => createSchedule(e)}>
+                    <form className="row" onSubmit={(e) => updateSchedule(e)}>
                       <Stepper ref={stepperRef}>
                         <StepperPanel header="Basic">
                           <div className="row">
@@ -620,8 +651,8 @@ export const ScheduleModal = () => {
                             >
                               Back
                             </button>
-                            <button type="submit" className={`btn btn-success ${stepTwoValidation() ? '' : 'disabled'}`}>
-                              Create schedule
+                            <button type="submit" className={`btn btn-primary ${stepTwoValidation() ? '' : 'disabled'}`}>
+                              Update schedule
                             </button>
                           </div>
                         </StepperPanel>
@@ -641,7 +672,7 @@ export const ScheduleModal = () => {
               Close
             </button>
             <button type="button" className="btn btn-primary">
-              Create schedule
+              Update schedule
             </button>
           </div>
         </div>

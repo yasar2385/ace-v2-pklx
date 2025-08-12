@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import * as bootstrap from 'bootstrap';
-import http from '../services/http.services';
-import { API_BASE_URL } from '../config';
+import http from '../../services/http.services';
+import { API_BASE_URL } from '../../config';
 
 export const UserProfileCanvas = () => {
   const [isEdit, setIsEdit] = useState(false);

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
-import { CreateShootout } from "../../components/createShootout";
-import { MatchDetails } from "../../components/matchDetails";
-import { PlayerSummary } from "../../components/playerSummary";
-import { ScheduleModal } from "../../components/scheduleModal";
-import { TeamDetails } from "../../components/teamDetails";
-import { UpdateScore } from "../../components/updateScore";
+import { CreateShootout } from "../../components/app/createShootout";
+import { MatchDetails } from "../../components/app/matchDetails";
+import { PlayerSummary } from "../../components/app/playerSummary";
+import { ScheduleModal } from "../../components/app/scheduleModal";
+import { TeamDetails } from "../../components/app/teamDetails";
+import { UpdateScore } from "../../components/app/updateScore";
 import {
   EditIcon,
   DeleteIcon,
@@ -19,8 +19,8 @@ import {
 import http from "../../services/http.services";
 
 import * as bootstrap from "bootstrap";
-import { UpdateScheduleModal } from "../../components/updateSchedule";
-import { Loading } from "../../components/loadingComponent";
+import { UpdateScheduleModal } from "../../components/app/updateSchedule";
+import { Loading } from "../../components/app/loadingComponent";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { FilterMatchMode } from "primereact/api";

@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import http from '../services/http.services';
+import http from '../../services/http.services';
 import { Dropdown } from 'primereact/dropdown';
 
 export const UpdateScore = (props: any) => {

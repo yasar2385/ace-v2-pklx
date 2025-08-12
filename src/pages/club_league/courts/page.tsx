@@ -2,11 +2,11 @@ import React, { useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { CreateCourtV2 } from "../../../components/CreateCourtOffCanvas";
-import { ViewCourt } from "../../../components/viewCourt";
+import { ViewCourt } from "../../../components/app/viewCourt";
 import { ImageIcon, ViewIcon, EditIcon, ViewImagesIcon, DeleteIcon } from "../../../shared/icons";
 import * as bootstrap from 'bootstrap';
 import http from "../../../services/http.services";
-import { Loading } from "../../../components/loadingComponent";
+import { Loading } from "../../../components/app/loadingComponent";
 import { API_BASE_URL } from "../../../config";
 
 

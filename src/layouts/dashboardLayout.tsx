@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 import { DashboardHeader } from "./dashboardHeader";
-import { ChangePasswordCanvas } from "../components/changePasswordCanvas";
-import { UserProfileCanvas } from "../components/userProfileCanvas";
+import { ChangePasswordCanvas } from "../components/app/changePasswordCanvas";
+import { UserProfileCanvas } from "../components/app/userProfileCanvas";
 
 export function DashboardLayout() {
   const navigate = useNavigate();

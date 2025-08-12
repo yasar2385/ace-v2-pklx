@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import http from '../services/http.services';
-import { API_BASE_URL } from '../config';
+import http from '../../services/http.services';
+import { API_BASE_URL } from '../../config';
 
 export const ViewCourt = (props: any) => {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { API_BASE_URL } from "../config";
+import { API_BASE_URL } from "../../config";
 
 export function ViewGroup() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
